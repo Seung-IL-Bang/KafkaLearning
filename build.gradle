@@ -10,11 +10,17 @@ repositories {
 }
 
 dependencies {
+    // spring web
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    // Kafka
-    implementation 'org.apache.kafka:kafka-clients:2.8.2'
-    // logger
-    implementation 'org.slf4j:slf4j-simple:2.0.3'
+    // spring kafka
+    implementation 'org.springframework.kafka:spring-kafka'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
 }
 
 test {
