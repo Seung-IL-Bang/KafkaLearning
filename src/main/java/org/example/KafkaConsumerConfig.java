@@ -12,13 +12,17 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-@EnableKafka
+@EnableKafka // Consumer 사용을 위해 적용해줘야 한다.
 @Configuration
 public class KafkaConsumerConfig {
 
     private static final String BOOTSTRAP_SERVER = "localhost:9092";
     private static final String GROUP_ID = "group3";
 
+    /**
+     * Interface ConsumerFactory 을 통해 ConcurrentKafkaListenerContainerFactory 를 만든다.
+     * 구현체: DefaultKafkaConsumerFactory<>(Map<String, Object> configs)
+     */
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
         Map<String, Object> props = new HashMap<>();
@@ -29,6 +33,9 @@ public class KafkaConsumerConfig {
         return new DefaultKafkaConsumerFactory<>(props);
     }
 
+    /**
+     * 해당 빈을 이용하여 kafka 로부터 메시지를 수신할 수 있는 객체를 만들 수 있다.
+     */
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, String> factory

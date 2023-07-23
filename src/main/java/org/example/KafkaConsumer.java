@@ -11,7 +11,7 @@ public class KafkaConsumer {
 
     ObjectMapper objectMapper = new ObjectMapper();
 
-    @KafkaListener(topics = TOPIC_NAME)
+    @KafkaListener(topics = TOPIC_NAME) // 해당 애너테이션이 적용된 메소드로 메시지를 수신한다.
     public void listenMessage(String jsonMessage) {
         try {
             MyMessage message = objectMapper.readValue(jsonMessage, MyMessage.class);
